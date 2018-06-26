@@ -1,0 +1,13 @@
+#Dubbo配置
+dubbo:
+  application:
+    name: spring-boot-dubbo-demo
+    environment: development
+    owner: arthas
+    version: 1.0.0
+  registry:
+    id: zookeeper
+    protocol: zookeeper
+    address: 127.0.0.1:2181
+
+#spring相关配置

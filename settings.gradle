@@ -1,1 +1,3 @@
 rootProject.name = 'spring-boot-dubbo-demo'
+include 'web'
+

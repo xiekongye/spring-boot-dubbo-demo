@@ -2,9 +2,11 @@ buildscript {
     ext {
         springBootVersion = '2.0.3.RELEASE'
     }
+
+    //这里不要配置阿里云，会找不大盘net.ltgt.apt插件
     repositories {
         mavenLocal()
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
+        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -12,26 +14,85 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-group = 'com.xiekongye.study'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-
-repositories {
-    mavenLocal()
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
-    mavenCentral()
+plugins {
+    id 'net.ltgt.apt' version '0.16'
 }
 
+//加载配置文件
+apply from: 'config.gradle'
 
-dependencies {
-    compile('org.springframework.boot:spring-boot-starter-data-redis')
-    compile('org.springframework.boot:spring-boot-starter-jdbc')
-    compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
-    runtime('mysql:mysql-connector-java')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+allprojects {
+    //为所有module应用插件
+    apply plugin: 'net.ltgt.apt'
+    apply plugin: 'java'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    version "${projectVersion}"
+
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public'}
+        jcenter()
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile){
+        options.encoding = 'UTF-8'
+        options.compilerArgs = [
+                '-Amapstruct.suppressGeneratorTimestamp=true'
+        ]
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor(0,'seconds')
+
+        //强制指定版本
+        resolutionStrategy{
+            //force'org.hamcrest:hamcrest-core:1.3'
+        }
+
+        //排除依赖
+//        all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+//        all*.exclude group: 'commons-logging', module: 'commons-logging'
+    }
+
+    task wrapper (type: Wrapper){
+        gradleVersion = "${gradleVersion}"
+    }
+}
+
+subprojects {
+    dependencies {
+        testCompile "junit:junit:${junitVersion}"
+        testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+
+        //SpringBoot
+        compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+
+        //dubbo
+//        compile "com.alibaba:dubbo:${dubboVersion}"
+        compile "com.alibaba.boot:dubbo-spring-boot-starter:${dubboSBVersion}"
+
+        //mysql && mybatis && hikari
+        runtime "mysql:mysql-connector-java:${mysqlVersion}"
+        compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSBVersion}"
+        compile "com.zaxxer:HikariCP:${hikariCPVersion}"
+
+        //inject
+        compile "javax.inject:javax.inject:${injectVersion}"
+
+        //gson
+        compile "com.google.code.gson:gson:${gsonVersion}"
+
+        //mapStruct
+        compile "org.mapstruct:mapstruct:${mapstructVersion}"
+        compile "org.mapstruct:mapstruct-jdk8:${mapstructVersion}"
+        apt "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+        //lombok
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        apt "org.projectlombok:lombok:${lombokVersion}"
+    }
 }
