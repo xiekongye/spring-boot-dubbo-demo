@@ -1,3 +1,6 @@
+server:
+  port: 8089
+
 #Dubbo配置
 dubbo:
   application:
@@ -10,4 +13,25 @@ dubbo:
     protocol: zookeeper
     address: 127.0.0.1:2181
 
-#spring相关配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: cdb-qqimjg11.gz.tencentcdb.com:10009
+    username: xiekongye
+    password: xiekongye900905ye
+    hikari:
+      auto-commit: true
+      maximum-pool-size: 30
+      minimum-idle: 5
+      pool-name: hikariDSPool
+
+mybatis:
+  #配置
+  configuration:
+    cache-enabled: true
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+    log-prefix: Arthas-Mybatis-
+  mapper-locations: classpath:mybatis/mappers/*.xml
+  type-aliases-package: com.arthas.study.springbootdubbodemo.model.po
+
