@@ -23,8 +23,8 @@ apply from: 'config.gradle'
 
 allprojects {
     //为所有module应用插件
-    apply plugin: 'net.ltgt.apt'
     apply plugin: 'java'
+    apply plugin: 'net.ltgt.apt'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -95,5 +95,8 @@ subprojects {
         //lombok
         compileOnly "org.projectlombok:lombok:${lombokVersion}"
         apt "org.projectlombok:lombok:${lombokVersion}"
+
+        //googleAutoService自动生成注解处理器注册文件
+        compile "com.google.auto.service:auto-service:${googleAutoServiceVersion}"
     }
 }

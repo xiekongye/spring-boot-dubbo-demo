@@ -1,3 +1,4 @@
 dependencies {
     compile project(':contract')
+    compile project(':service')
 }

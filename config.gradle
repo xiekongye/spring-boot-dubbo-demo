@@ -25,4 +25,5 @@ ext {
 
     lombokVersion = '1.16.12'
 
+    googleAutoServiceVersion = '1.0-rc4'
 }
