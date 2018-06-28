@@ -1,17 +1,19 @@
 package com.arthas.study.springbootdubbodemo.api.serviceentry;
 
-import com.arthas.springbootdubbodemo.common.components.ExportService;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.arthas.springbootdubbodemo.contract.review.AddMainReviewRequest;
 import com.arthas.springbootdubbodemo.contract.review.AddMainReviewResponse;
 import com.arthas.springbootdubbodemo.contract.review.facade.IPlatformReviewUpdateService;
 import com.arthas.study.springbootdubbodemo.api.serviceprocessor.BaseServiceProcessor;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author : lieying
  * date : 2018/6/27 16:33
  */
-@ExportService(httpPrefix = {"/pfReviewUpdate"})
+@Service(interfaceClass = IPlatformReviewUpdateService.class)
+@Component
 public class PlatformReviewUpdateService implements IPlatformReviewUpdateService {
 
 	private BaseServiceProcessor<AddMainReviewRequest,AddMainReviewResponse> platformReviewUpdateProcessor;

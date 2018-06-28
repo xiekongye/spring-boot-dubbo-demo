@@ -3,15 +3,19 @@ server:
 
 #Dubbo配置
 dubbo:
+  scan:
+    base-packages:com.arthas.study.springbootdubbodemo.api.serviceentry
   application:
     name: spring-boot-dubbo-demo
-    environment: development
     owner: arthas
     version: 1.0.0
   registry:
     id: zookeeper
     protocol: zookeeper
     address: 127.0.0.1:2181
+  protocol:
+    name: dubbo
+    port: 20880
 
 spring:
   datasource:
@@ -24,6 +28,8 @@ spring:
       maximum-pool-size: 30
       minimum-idle: 5
       pool-name: hikariDSPool
+      connection-timeout: 30000
+      connection-test-query: select 1
 
 mybatis:
   #配置

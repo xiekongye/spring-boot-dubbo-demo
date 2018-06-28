@@ -14,7 +14,7 @@ public class PlatformReviewUpdateProcessor extends BaseServiceProcessor<AddMainR
 
 	@Override
 	protected boolean validateRequest(AddMainReviewRequest request) throws IllegalArgumentException {
-		return false;
+		return true;
 	}
 
 	@Override

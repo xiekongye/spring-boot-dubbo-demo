@@ -1,4 +1,8 @@
 dependencies {
     compile project(':contract')
     compile project(':service')
+
+    //zookeeper
+    compile "org.apache.zookeeper:zookeeper:${zookeeperVersion}"
+    compile "com.github.sgroschupf:zkclient:${zkCLientVersion}"
 }

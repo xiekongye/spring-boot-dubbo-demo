@@ -73,7 +73,7 @@ subprojects {
         compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
 
         //dubbo
-//        compile "com.alibaba:dubbo:${dubboVersion}"
+        compile "com.alibaba:dubbo:${dubboVersion}"
         compile "com.alibaba.boot:dubbo-spring-boot-starter:${dubboSBVersion}"
 
         //mysql && mybatis && hikari
@@ -83,6 +83,7 @@ subprojects {
 
         //inject
         compile "javax.inject:javax.inject:${injectVersion}"
+        compile "org.aspectj:aspectjrt:${aspectjVersion}"
 
         //gson
         compile "com.google.code.gson:gson:${gsonVersion}"
