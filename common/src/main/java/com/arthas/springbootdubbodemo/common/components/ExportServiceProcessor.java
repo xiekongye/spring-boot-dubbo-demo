@@ -1,7 +1,5 @@
 package com.arthas.springbootdubbodemo.common.components;
 
-import com.google.auto.service.AutoService;
-
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
@@ -14,7 +12,7 @@ import java.util.Set;
  */
 @SupportedAnnotationTypes({"com.arthas.springbootdubbodemo.common.components.ExportService"})
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
-@AutoService(Processor.class)
+//@AutoService(Processor.class)
 public class ExportServiceProcessor extends AbstractProcessor {
 
 	private Messager messager;

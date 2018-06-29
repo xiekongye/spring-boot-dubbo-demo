@@ -3,7 +3,8 @@ package com.arthas.study.springbootdubbodemo.api.serviceprocessor;
 import com.arthas.springbootdubbodemo.contract.base.BaseErrorCode;
 import com.arthas.springbootdubbodemo.contract.base.ServiceBaseRequest;
 import com.arthas.springbootdubbodemo.contract.base.ServiceBaseResponse;
-import com.google.common.base.Stopwatch;
+import org.springframework.util.StopWatch;
+//import com.google.common.base.Stopwatch;
 
 import java.lang.reflect.ParameterizedType;
 
@@ -19,7 +20,8 @@ public abstract class BaseServiceProcessor<TRequest extends ServiceBaseRequest, 
 
 	public TResponse processSoa(TRequest request){
 
-		Stopwatch stopwatch = Stopwatch.createStarted();
+		StopWatch stopWatch = new StopWatch();
+		stopWatch.start();
 
 		TResponse response = null;
 
@@ -40,7 +42,7 @@ public abstract class BaseServiceProcessor<TRequest extends ServiceBaseRequest, 
 		} catch (Throwable e){
 			postProcessResponse(response,BaseErrorCode.FATAL_ERROR.errorCode(),BaseErrorCode.FATAL_ERROR.errorMsg());
 		} finally {
-			stopwatch.stop();
+			stopWatch.stop();
 		}
 
 		return response;
