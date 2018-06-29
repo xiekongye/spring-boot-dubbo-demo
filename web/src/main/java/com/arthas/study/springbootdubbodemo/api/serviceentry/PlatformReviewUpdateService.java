@@ -1,18 +1,18 @@
 package com.arthas.study.springbootdubbodemo.api.serviceentry;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.arthas.springbootdubbodemo.contract.review.AddMainReviewRequest;
 import com.arthas.springbootdubbodemo.contract.review.AddMainReviewResponse;
 import com.arthas.springbootdubbodemo.contract.review.facade.IPlatformReviewUpdateService;
 import com.arthas.study.springbootdubbodemo.api.serviceprocessor.BaseServiceProcessor;
+import com.arthas.study.springbootdubbodemo.model.annotations.DubboService;
+import com.arthas.study.springbootdubbodemo.model.annotations.DubboServiceMethod;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author : lieying
  * date : 2018/6/27 16:33
  */
-@Service(interfaceClass = IPlatformReviewUpdateService.class)
+@DubboService
 @Component
 public class PlatformReviewUpdateService implements IPlatformReviewUpdateService {
 
@@ -29,7 +29,7 @@ public class PlatformReviewUpdateService implements IPlatformReviewUpdateService
 	 * @param addMainReviewRequest
 	 */
 	@Override
-	@RequestMapping(value = {"/addMainReview"})
+	@DubboServiceMethod
 	public AddMainReviewResponse addMainReview(AddMainReviewRequest addMainReviewRequest) {
 		return this.platformReviewUpdateProcessor.processSoa(addMainReviewRequest);
 	}
