@@ -15,4 +15,7 @@ public class SerializeUtils {
 		return GSON.toJson(obj);
 	}
 
+	public static <T> T fromJson(String jsonStr,Class<T> targetType) {
+		return GSON.fromJson(jsonStr,targetType);
+	}
 }

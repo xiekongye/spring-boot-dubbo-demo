@@ -1,5 +1,6 @@
 package com.arthas.study.springbootdubbodemo.api.serviceentry;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.arthas.springbootdubbodemo.contract.review.AddMainReviewRequest;
 import com.arthas.springbootdubbodemo.contract.review.AddMainReviewResponse;
 import com.arthas.springbootdubbodemo.contract.review.facade.IPlatformReviewUpdateService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @DubboService
 @Component
+@Service
 public class PlatformReviewUpdateService implements IPlatformReviewUpdateService {
 
 	private BaseServiceProcessor<AddMainReviewRequest,AddMainReviewResponse> platformReviewUpdateProcessor;

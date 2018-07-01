@@ -1,5 +1,6 @@
 package com.arthas.study.springbootdubbodemo.api.serviceentry;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.arthas.springbootdubbodemo.contract.commodity.QueryCommodityDetailRequest;
 import com.arthas.springbootdubbodemo.contract.commodity.QueryCommodityDetailResponse;
 import com.arthas.springbootdubbodemo.contract.commodity.facade.IQueryCommodityDetailService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @DubboService
 @Component
+@Service
 public class QueryCommodityDetailService implements IQueryCommodityDetailService {
 
 	private BaseServiceProcessor<QueryCommodityDetailRequest,QueryCommodityDetailResponse> queryCommodityDetailProcessor;
