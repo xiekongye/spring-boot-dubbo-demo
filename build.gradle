@@ -89,6 +89,9 @@ subprojects {
         //gson
         compile "com.google.code.gson:gson:${gsonVersion}"
 
+        //jedis
+        compile "redis.clients:jedis:${jedisVersion}"
+
         //mapStruct
         compile "org.mapstruct:mapstruct:${mapstructVersion}"
         compile "org.mapstruct:mapstruct-jdk8:${mapstructVersion}"
@@ -101,6 +104,7 @@ subprojects {
         //googleAutoService自动生成注解处理器注册文件
         compile "com.google.auto.service:auto-service:${googleAutoServiceVersion}"
 
+        //apache-common
         compile "org.apache.commons:commons-lang3:$commonsLangVersion"
     }
 }

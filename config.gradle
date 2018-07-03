@@ -29,4 +29,6 @@ ext {
     aspectjVersion = '1.9.1'
 
     commonsLangVersion = '3.4'
+
+    jedisVersion = '2.9.0'
 }

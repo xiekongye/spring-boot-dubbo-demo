@@ -3,13 +3,13 @@ package com.arthas.study.springbootdubbodemo.api.serviceprocessor.review;
 import com.arthas.springbootdubbodemo.contract.review.AddMainReviewRequest;
 import com.arthas.springbootdubbodemo.contract.review.AddMainReviewResponse;
 import com.arthas.study.springbootdubbodemo.api.serviceprocessor.BaseServiceProcessor;
-import org.springframework.stereotype.Component;
+import com.arthas.study.springbootdubbodemo.model.annotations.RPCServiceProcessor;
 
 /**
  * @author : lieying
  * date : 2018/6/27 16:54
  */
-@Component
+@RPCServiceProcessor(name = "评论更新处理器")
 public class PlatformReviewUpdateProcessor extends BaseServiceProcessor<AddMainReviewRequest,AddMainReviewResponse> {
 
 	@Override
