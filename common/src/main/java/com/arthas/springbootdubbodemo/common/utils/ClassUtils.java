@@ -1,6 +1,8 @@
 package com.arthas.springbootdubbodemo.common.utils;
 
 import javassist.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
 import java.lang.reflect.Modifier;
@@ -13,31 +15,36 @@ import java.util.Map;
  */
 public class ClassUtils {
 
+	private final static Logger LOGGER = LoggerFactory.getLogger(ClassUtils.class);
+
+	/**
+	 * 动态生成一个Class
+	 * */
 	public static Class<?> generateDynamicClass(String simpleClassName, Map<String,Type> fields){
 
 		ClassPool classPool = ClassPool.getDefault();
 
-		CtClass ctClass = classPool.makeClass(generateFullClassName(simpleClassName));
+		String classFullName = generateFullClassName(simpleClassName);
 
-		if (!CollectionUtils.isEmpty(fields)){
-			for (Map.Entry<String,Type> field : fields.entrySet()){
-				try {
+		CtClass ctClass = classPool.makeClass(classFullName);
+
+		try {
+			if (!CollectionUtils.isEmpty(fields)){
+				for (Map.Entry<String,Type> field : fields.entrySet()){
 					CtField ctField = new CtField(classPool.getCtClass(field.getValue().getTypeName()),field.getKey(),ctClass);
 					ctField.setModifiers(Modifier.PUBLIC);
 					ctClass.addField(ctField);
-				} catch (CannotCompileException e) {
-					e.printStackTrace();
-				} catch (NotFoundException e) {
-					e.printStackTrace();
 				}
 			}
+
+			//Class.forName(classFullName);
+
+			return ctClass.toClass();
+
+		} catch (Exception e){
+			LOGGER.warn(e.getMessage());
 		}
 
-		try {
-			Class destClass = ctClass.toClass();
-		} catch (CannotCompileException e) {
-			e.printStackTrace();
-		}
 		return null;
 	}
 
