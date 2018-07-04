@@ -9,7 +9,7 @@ import com.arthas.study.springbootdubbodemo.model.annotations.RPCServiceProcesso
  * @author : lieying
  * date : 2018/6/28 20:37
  */
-@RPCServiceProcessor(name = "商品详情处理器")
+@RPCServiceProcessor(value = "queryCommodityDetail", name = "商品详情处理器")
 public class QueryCommodityDetailProcessor extends BaseServiceProcessor<QueryCommodityDetailRequest,QueryCommodityDetailResponse> {
 
 	@Override

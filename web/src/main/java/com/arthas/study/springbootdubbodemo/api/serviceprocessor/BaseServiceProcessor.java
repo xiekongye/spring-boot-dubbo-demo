@@ -1,8 +1,11 @@
 package com.arthas.study.springbootdubbodemo.api.serviceprocessor;
 
 import com.arthas.springbootdubbodemo.common.components.RPCContext;
+import com.arthas.springbootdubbodemo.common.utils.LogHelper;
+import com.arthas.springbootdubbodemo.common.utils.RPCUtils;
 import com.arthas.springbootdubbodemo.contract.base.ServiceBaseRequest;
 import com.arthas.springbootdubbodemo.contract.base.ServiceBaseResponse;
+import com.arthas.study.springbootdubbodemo.model.annotations.RPCServiceProcessor;
 import com.arthas.study.springbootdubbodemo.model.errorcode.rpc.RPCErrorCode;
 import org.springframework.util.StopWatch;
 
@@ -27,6 +30,11 @@ public abstract class BaseServiceProcessor<TRequest extends ServiceBaseRequest, 
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
 
+		//获取Processor注解信息
+		RPCServiceProcessor processorMeta = RPCUtils.getRPCServiceProcessor(this.getClass());
+
+		initLog(processorMeta,request);
+
 		TResponse response = null;
 
 		try {
@@ -50,10 +58,30 @@ public abstract class BaseServiceProcessor<TRequest extends ServiceBaseRequest, 
 			postProcessResponse(response,RPCErrorCode.FATAL_ERROR);
 		} finally {
 			stopWatch.stop();
+
+			postProcessLog(response);
+
+			//记录日志
+			LogHelper.doLog();
+
 			RPCContext.clear();
 		}
 
 		return response;
+	}
+
+	/**
+	 * 初始化Log
+	 * */
+	private void initLog(RPCServiceProcessor processorMeta,TRequest request){
+
+	}
+
+	/**
+	 * 后处理Log
+	 * */
+	private void postProcessLog(TResponse response){
+
 	}
 
 	/**

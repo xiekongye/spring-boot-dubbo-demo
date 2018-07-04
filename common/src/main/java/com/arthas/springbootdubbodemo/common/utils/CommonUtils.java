@@ -1,5 +1,6 @@
 package com.arthas.springbootdubbodemo.common.utils;
 
+import com.arthas.study.springbootdubbodemo.model.enums.system.OSType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -171,5 +172,25 @@ public class CommonUtils {
 		});
 
 		return result;
+	}
+
+	/**
+	 * 获取操作系统名称
+	 * */
+	public static OSType getOsType(){
+		final String osName = System.getProperty("os.name").toLowerCase();
+		if (osName.contains("win")){
+			return OSType.WINDOWS;
+		}
+		if (osName.contains("mac")){
+			return OSType.OS_X;
+		}
+		if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")){
+			return OSType.UNIX;
+		}
+		if (osName.contains("sunos")){
+			return OSType.SOLARIS;
+		}
+		return OSType.UNKNOWN;
 	}
 }

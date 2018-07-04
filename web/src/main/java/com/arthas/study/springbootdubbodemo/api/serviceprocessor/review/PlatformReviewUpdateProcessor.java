@@ -9,7 +9,7 @@ import com.arthas.study.springbootdubbodemo.model.annotations.RPCServiceProcesso
  * @author : lieying
  * date : 2018/6/27 16:54
  */
-@RPCServiceProcessor(name = "评论更新处理器")
+@RPCServiceProcessor(value ="platformReviewUpdate", name = "评论更新处理器")
 public class PlatformReviewUpdateProcessor extends BaseServiceProcessor<AddMainReviewRequest,AddMainReviewResponse> {
 
 	@Override

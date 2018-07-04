@@ -13,11 +13,6 @@ public interface BaseEnum {
 	int code();
 
 	/**
-	 * 枚举名称
-	 * */
-	String name();
-
-	/**
 	 * 描述
 	 * */
 	String desc();

@@ -12,6 +12,7 @@ ext {
     mysqlVersion = '6.0.6'
     mybatisSBVersion = '1.3.2'
     hikariCPVersion = '3.2.0'
+    shardingJDBCVersion = '3.0.0.M1'
 
     zookeeperVersion = '3.4.12'
     zkCLientVersion = '0.1'

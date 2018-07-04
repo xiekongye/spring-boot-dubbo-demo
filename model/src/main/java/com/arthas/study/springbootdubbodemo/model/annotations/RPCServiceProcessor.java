@@ -17,7 +17,7 @@ import java.lang.annotation.*;
 public @interface RPCServiceProcessor {
 
 	/**
-	 * Processor Id，会设置为Bean名称
+	 * Bean名称
 	 * */
 	@AliasFor(annotation = Component.class,attribute = "value")
 	String value() default "";

@@ -6,4 +6,14 @@ package com.arthas.springbootdubbodemo.common.log;
  * date : 2018/7/3 21:47
  */
 public class LogContext {
+
+	private String requestContent;
+
+	private String responseContent;
+
+
+	class Builder {
+
+	}
+
 }

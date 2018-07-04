@@ -81,6 +81,7 @@ subprojects {
         runtime "mysql:mysql-connector-java:${mysqlVersion}"
         compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSBVersion}"
         compile "com.zaxxer:HikariCP:${hikariCPVersion}"
+        compile "io.shardingsphere:sharding-jdbc:${shardingJDBCVersion}"
 
         //inject
         compile "javax.inject:javax.inject:${injectVersion}"
