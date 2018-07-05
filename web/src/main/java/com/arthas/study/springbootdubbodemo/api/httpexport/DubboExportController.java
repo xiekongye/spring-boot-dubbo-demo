@@ -43,7 +43,7 @@ public class DubboExportController implements ApplicationContextAware {
 	//服务实例及缓存
 	private static Map<String,DubboServiceInstance<?>> serviceInstanceCache = new HashMap<>();
 
-	private ApplicationContext applicationContext;
+	private transient ApplicationContext applicationContext;
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
