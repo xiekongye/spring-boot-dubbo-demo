@@ -19,16 +19,17 @@ public class TestDynamicClassGenerate {
 		Map<String,Type> fields = new HashMap<>();
 		fields.put("uid",String.class);
 
-		Class clazz = ClassUtils.generateDynamicClass("Test",fields);
+		Class clazz = ClassUtils.generateDynamicClass("Test",fields,true);
 
 		try {
+
+			Class loadedClazz = Class.forName(clazz.getName());
+
 			Object instance = clazz.newInstance();
 
 			System.out.println(new Gson().toJson(instance));
 
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (InstantiationException | ClassNotFoundException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}

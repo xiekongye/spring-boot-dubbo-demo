@@ -1,6 +1,8 @@
 package com.arthas.springbootdubbodemo.common.components;
 
 import com.arthas.springbootdubbodemo.common.log.LogContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +19,9 @@ public class RPCContext {
 	//日志上下文
 	private static final String LOG_CONTEXT = "LOG_CONTEXT";
 
+	//线程上下文日志记录器
+	private static final String LOGGER = "LOGGER";
+
 	//上下文内容
 	private static final ThreadLocal<Map<String,Object>> CONTEXT = ThreadLocal.withInitial(() -> new HashMap<>(CONTEXT_DEFAULT_SIZE));
 
@@ -24,12 +29,27 @@ public class RPCContext {
 	 * 获取当前线程日志上下文
 	 * */
 	public static LogContext getLogContext(){
-		//todo:LogBuilder设置logcontext
+
+		if (!CONTEXT.get().containsKey(LOG_CONTEXT)){
+			CONTEXT.get().put(LOG_CONTEXT,LogContext.Builder.create());
+		}
+
 		return (LogContext) CONTEXT.get().get(LOG_CONTEXT);
+	}
+
+	public static Logger getContextLogger(){
+		if (!CONTEXT.get().containsKey(LOGGER)){
+			CONTEXT.get().putIfAbsent(LOGGER,LoggerFactory.getLogger(getLoggerName()));
+		}
+		return (Logger)CONTEXT.get().get(LOGGER);
 	}
 
 	public static void clear(){
 		CONTEXT.get().clear();
 	}
 
+
+	private static String getLoggerName(){
+		return String.format("RPCContext-slf4j-logger-for-thread:%s",Thread.currentThread().getName());
+	}
 }

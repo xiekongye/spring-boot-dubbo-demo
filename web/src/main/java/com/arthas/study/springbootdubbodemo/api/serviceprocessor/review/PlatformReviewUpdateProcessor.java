@@ -6,6 +6,7 @@ import com.arthas.study.springbootdubbodemo.api.serviceprocessor.BaseServiceProc
 import com.arthas.study.springbootdubbodemo.model.annotations.RPCServiceProcessor;
 
 /**
+ * 评论更新处理类
  * @author : lieying
  * date : 2018/6/27 16:54
  */

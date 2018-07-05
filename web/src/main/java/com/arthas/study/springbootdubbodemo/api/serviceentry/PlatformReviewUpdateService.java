@@ -9,6 +9,8 @@ import com.arthas.study.springbootdubbodemo.model.annotations.DubboService;
 import com.arthas.study.springbootdubbodemo.model.annotations.DubboServiceMethod;
 import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
+
 /**
  * @author : lieying
  * date : 2018/6/27 16:33
@@ -20,6 +22,7 @@ public class PlatformReviewUpdateService implements IPlatformReviewUpdateService
 
 	private BaseServiceProcessor<AddMainReviewRequest,AddMainReviewResponse> platformReviewUpdateProcessor;
 
+	@Inject
 	public PlatformReviewUpdateService(BaseServiceProcessor<AddMainReviewRequest,AddMainReviewResponse> platformReviewUpdateProcessor){
 		this.platformReviewUpdateProcessor = platformReviewUpdateProcessor;
 	}

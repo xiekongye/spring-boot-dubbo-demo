@@ -29,7 +29,7 @@ public class RPCUtils {
 
 		processorMeta = processorClazz.getAnnotation(RPCServiceProcessor.class);
 		if (processorMeta != null){
-			SERVICE_PROCESSOR_MAP.put(processorClazz,processorMeta);
+			SERVICE_PROCESSOR_MAP.putIfAbsent(processorClazz,processorMeta);
 		}
 
 		return processorMeta;

@@ -20,7 +20,7 @@ public class ClassUtils {
 	/**
 	 * 动态生成一个Class
 	 * */
-	public static Class<?> generateDynamicClass(String simpleClassName, Map<String,Type> fields){
+	public static Class<?> generateDynamicClass(String simpleClassName, Map<String,Type> fields,boolean withInit){
 
 		ClassPool classPool = ClassPool.getDefault();
 
@@ -37,9 +37,12 @@ public class ClassUtils {
 				}
 			}
 
-			//Class.forName(classFullName);
+			Class clazz = ctClass.toClass();
 
-			return ctClass.toClass();
+			//加载类
+			Class.forName(clazz.getName());
+
+			return clazz;
 
 		} catch (Exception e){
 			LOGGER.warn(e.getMessage());
