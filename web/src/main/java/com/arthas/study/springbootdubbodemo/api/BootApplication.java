@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @author : lieying
  * date : 2018/6/26 18:20
  */
-@SpringBootApplication(scanBasePackages = {"com.arthas.study.springbootdubbodemo.*"})
+@SpringBootApplication(scanBasePackages = {"com.arthas.study.springbootdubbodemo.api.*"})
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @Import(value = {ServiceApplicationContext.class})
 public class BootApplication {

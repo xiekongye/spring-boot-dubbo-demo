@@ -53,6 +53,7 @@ hs_err_pid*
 
 # temp ignore
 *.log
+log
 *.cache
 *.diff
 *.patch

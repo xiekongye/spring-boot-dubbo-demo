@@ -1,24 +1,7 @@
 server:
   port: 8089
 
-dubbo:
-  scan:
-    basePackages: com.arthas.study.springbootdubbodemo.api.serviceentry
-  application:
-    name: spring-boot-dubbo-demo
-    owner: arthas
-    version: 1.0.0
-  registry:
-    id: zookeeper
-    protocol: zookeeper
-    address: localhost:2181
-  protocol:
-    name: dubbo
-    port: 20880
-
 spring:
-  application:
-    name: spring-boot-dubbo-demo
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: cdb-qqimjg11.gz.tencentcdb.com:10009
