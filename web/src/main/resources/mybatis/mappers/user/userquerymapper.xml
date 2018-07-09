@@ -2,6 +2,15 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.arthas.study.springbootdubbodemo.repository.dao.facade.IUserMapper">
 
+    <resultMap id="baseResultMap" type="com.arthas.study.springbootdubbodemo.model.po.UserPO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getUserById" parameterType="java.lang.Integer" resultMap="baseResultMap">
+        select * from user where id=#{id}
+    </select>
 </mapper>

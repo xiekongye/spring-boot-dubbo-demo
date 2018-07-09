@@ -29,25 +29,27 @@ import java.util.concurrent.TimeUnit;
 @Import(value = {ServiceApplicationContext.class})
 public class BootApplication {
 
+	private final static int PORT = 8089;
+
 	public static void main(String[] args) {
  		SpringApplication.run(BootApplication.class,args);
 	}
 
 	@Bean
-	public GracefulShutdow gracefulShutdow(){
-		return new GracefulShutdow();
+	public GracefulShutdown gracefulShutdow(){
+		return new GracefulShutdown();
 	}
 
 	@Bean
-	public ServletWebServerFactory servletContainer(){
+	public ServletWebServerFactory servletContainer(TomcatConnectorCustomizer customizeConnector){
 		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-		tomcat.addConnectorCustomizers(gracefulShutdow());
+		tomcat.addConnectorCustomizers(customizeConnector);
 		return tomcat;
 	}
 
-	private class GracefulShutdow implements TomcatConnectorCustomizer,ApplicationListener<ContextClosedEvent> {
+	private class GracefulShutdown implements TomcatConnectorCustomizer,ApplicationListener<ContextClosedEvent> {
 
-		private final Logger LOGGER = LoggerFactory.getLogger(GracefulShutdow.class);
+		private final Logger LOGGER = LoggerFactory.getLogger(GracefulShutdown.class);
 
 		private final int waitTime = 30;
 
@@ -56,6 +58,7 @@ public class BootApplication {
 		@Override
 		public void customize(Connector connector) {
 			this.connector = connector;
+			connector.setPort(PORT);
 		}
 
 		@Override

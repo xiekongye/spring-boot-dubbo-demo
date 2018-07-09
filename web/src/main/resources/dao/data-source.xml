@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="hikariDS" class="com.zaxxer.hikari.HikariDataSource">
+        <constructor-arg name="configuration" ref="hikariDSConfig"/>
+    </bean>
+
+    <bean id="hikariDSConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="autoCommit" value="false"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://cdb-qqimjg11.gz.tencentcdb.com:10009/lieying?useSSL=false"/>
+        <property name="username" value="root"/>
+        <property name="password" value="xiekongye900905ye"/>
+        <property name="maximumPoolSize" value="20"/>
+        <property name="minimumIdle" value="5"/>
+        <property name="poolName" value="hikariCPPool"/>
+        <property name="connectionTestQuery" value="select 1"/>
+        <property name="connectionTimeout" value="30000"/>
+    </bean>
+
+</beans>

@@ -1,27 +1,2 @@
 server:
   port: 8089
-
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: cdb-qqimjg11.gz.tencentcdb.com:10009
-    username: xiekongye
-    password: xiekongye900905ye
-    hikari:
-      auto-commit: true
-      maximum-pool-size: 30
-      minimum-idle: 5
-      pool-name: hikariDSPool
-      connection-timeout: 30000
-      connection-test-query: select 1
-
-mybatis:
-  #配置
-  configuration:
-    cache-enabled: true
-    map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
-    log-prefix: Arthas-Mybatis-
-  mapper-locations: classpath:mybatis/mappers/*.xml
-  type-aliases-package: com.arthas.study.springbootdubbodemo.model.po
-

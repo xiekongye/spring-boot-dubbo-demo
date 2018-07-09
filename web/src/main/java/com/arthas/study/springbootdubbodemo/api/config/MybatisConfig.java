@@ -4,12 +4,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
 /**
- * Dubbo provider配置类
+ * Mybatis配置
  * @author : lieying
- * date : 2018/7/9 15:39
+ * date : 2018/7/9 21:29
  */
 @Configuration
-@ImportResource(value = {"classpath:META-INF/dubbo/dubbo-provider.xml"})
-public class DubboProviderConfig {
+@ImportResource(value = {"classpath:mybatis/mybatis-spring.xml"})
+public class MybatisConfig {
 
 }

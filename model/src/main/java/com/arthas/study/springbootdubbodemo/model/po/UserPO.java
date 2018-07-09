@@ -4,11 +4,15 @@ import lombok.Data;
 
 /**
  * @author : lieying
- * date : 2018/7/2 20:15
+ * date : 2018/7/9 19:48
  */
 @Data
-public class TestPO2 {
+public class UserPO {
 
-	private String name2;
+	private Integer id;
+
+	private String name;
+
+	private String gender;
 
 }
